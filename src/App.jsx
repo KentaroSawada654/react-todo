@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./styles.css";
 
+import { InputTodo } from "./components/inputTodo";
+
 export const App = () => {
   const [todoText, SetTodoText] = useState("");
-  const [incompleteTodos, setIncompleteTodos] = useState(["あああ", "いいい"]);
-  const [completeTodos, setCompleteTodos] = useState(["ううう", "えええ"]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
+  const [completeTodos, setCompleteTodos] = useState([]);
 
   //入力時の処理
   const onChangeTodoText = (event) => {
@@ -48,16 +50,11 @@ export const App = () => {
 
   return (
     <>
-      <div className="input-area">
-        <input
-          placeholder="TODOを入力"
-          type="text"
-          value={todoText}
-          onChange={onChangeTodoText} //文字を入力したとき「todoText」ステーツを更新！
-        />
-
-        <button onClick={onClickAdd}>追加</button>
-      </div>
+      <InputTodo
+        todoText={todoText}
+        onChange={onChangeTodoText}
+        onClick={onClickAdd}
+      />
       <div className="incomplete-area">
         <p className="title">未完了のTODO</p>
         <ul>
